@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component'
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,10 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class AppComponent {
   constructor(private dialog: MatDialog){}
   title = 'myApp';
+
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width: "30%"
+    });
+  }
 }
