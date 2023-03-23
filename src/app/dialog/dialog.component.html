@@ -3,48 +3,50 @@
 <br>
 
 <div mat-dialog-content>
-  <mat-form-field appearance="outline">
-    <mat-label>Mark of product</mat-label>
-    <input matInput placeholder="Phone">
-    <mat-icon matSuffix>dialpad</mat-icon>
-  </mat-form-field>
+  <Form [formGroup]="productForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Mark of product</mat-label>
+      <input matInput placeholder="Phone" formControlName="productName">
+      <mat-icon matSuffix>dialpad</mat-icon>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Category</mat-label>
-    <mat-select>
-      <mat-option value="Iphone">Iphone</mat-option>
-      <mat-option value="Samsung">Samsung</mat-option>
-      <mat-option value="Huawei">Huawei</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option value="Iphone">Iphone</mat-option>
+        <mat-option value="Samsung">Samsung</mat-option>
+        <mat-option value="Huawei">Huawei</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Choose a date</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
-    <mat-radio-button class="example-radio-button" *ngFor="let product of conditionProduct" [value]="product">
-      {{product}}
-    </mat-radio-button>
-  </mat-radio-group>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName="condition">
+      <mat-radio-button class="example-radio-button" *ngFor="let product of conditionProduct" [value]="product">
+        {{product}}
+      </mat-radio-button>
+    </mat-radio-group>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Price</mat-label>
-    <input matInput placeholder="Phone">
-    <mat-icon matSuffix>attach_money</mat-icon>
-  </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput placeholder="Phone" formControlName="price">
+      <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Comment</mat-label>
-    <textarea matInput></textarea>
-  </mat-form-field>
+    <mat-form-field appearance="outline" formControlName="comment">
+      <mat-label>Comment</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </Form>
 
   <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button color="primary" (click)="addProduct()">Save</button>
   </div>
 </div>
