@@ -35,18 +35,18 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Price</mat-label>
-      <input matInput placeholder="Phone" formControlName="price">
+      <input matInput placeholder="Price" formControlName="price">
       <mat-icon matSuffix>attach_money</mat-icon>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" formControlName="comment">
+    <mat-form-field appearance="outline" >
       <mat-label>Comment</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput formControlName="comment"></textarea>
     </mat-form-field>
   </Form>
 
   <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button mat-raised-button color="primary" (click)="addProduct()">Save</button>
+    <button mat-raised-button color="primary" (click)="addProduct()">{{actionBtn}}</button>
   </div>
 </div>
