@@ -1,5 +1,22 @@
 {
-  "ProductList": [
-    
+  "productList": [
+    {
+      "productName": "dsfsdg",
+      "category": "Samsung",
+      "condition": "New",
+      "price": "3245325",
+      "comment": "fgdfgdfg",
+      "date": "2023-03-12T19:00:00.000Z",
+      "id": 1
+    },
+    {
+      "productName": "Samsung",
+      "category": "Samsung",
+      "condition": "Second Hand",
+      "price": "2133454",
+      "comment": "dsffsdf",
+      "date": "2023-03-01T19:00:00.000Z",
+      "id": 2
+    }
   ]
 }
