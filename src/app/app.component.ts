@@ -14,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AppComponent implements OnInit{
   constructor(private dialog: MatDialog, private api: ApiService){}
 
-  displayedColumns: string[] = ['productName', 'category', 'price', 'condition', 'date', 'comment'];
+  displayedColumns: string[] = ['productName', 'category', 'price', 'condition', 'date', 'comment', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,6 +28,10 @@ export class AppComponent implements OnInit{
   openDialog() {
     this.dialog.open(DialogComponent, {
       width: "30%"
+    }).afterClosed().subscribe(res =>{
+      if(res === 'save'){
+        this.getAllProducts()
+      }
     });
   }
 
@@ -52,5 +56,29 @@ export class AppComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  editProduct(row: any){
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: row
+    }).afterClosed().subscribe(res =>{
+      if(res === 'update'){
+        this.getAllProducts()
+      }
+    });
+  }
+
+  deleteProduct(id: number){
+    this.api.deleteProduct(id)
+      .subscribe({
+        next:(res) => {
+          alert("Product deleted successfully")
+          this.getAllProducts()
+        },
+        error: ()=>{
+          alert("Something went wrong while get product")
+        }
+      })
   }
 }

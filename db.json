@@ -1,11 +1,11 @@
 {
   "productList": [
     {
-      "productName": "dsfsdg",
-      "category": "Samsung",
+      "productName": "Huawei",
+      "category": "Huawei",
       "condition": "New",
       "price": "3245325",
-      "comment": "fgdfgdfg",
+      "comment": "new",
       "date": "2023-03-12T19:00:00.000Z",
       "id": 1
     },
@@ -14,9 +14,54 @@
       "category": "Samsung",
       "condition": "Second Hand",
       "price": "2133454",
-      "comment": "dsffsdf",
+      "comment": "new",
       "date": "2023-03-01T19:00:00.000Z",
       "id": 2
+    },
+    {
+      "productName": "Phone",
+      "category": "Samsung",
+      "condition": "B/Y",
+      "price": "3245325",
+      "comment": "New",
+      "date": "2023-03-12T19:00:00.000Z",
+      "id": 3
+    },
+    {
+      "productName": "Samsung",
+      "category": "Samsung",
+      "condition": "New",
+      "price": "2133454",
+      "comment": "Second Hand",
+      "date": "2023-03-01T19:00:00.000Z",
+      "id": 4
+    },
+    {
+      "productName": "Tablet",
+      "category": "Samsung",
+      "condition": "New",
+      "price": "3245325",
+      "comment": "Good",
+      "date": "2023-03-12T19:00:00.000Z",
+      "id": 5
+    },
+    {
+      "productName": "ewrtdsfgdfg",
+      "category": "Samsung",
+      "condition": "New",
+      "price": "45435345",
+      "comment": "dsfgfdgdfg",
+      "date": "2023-03-06T19:00:00.000Z",
+      "id": 6
+    },
+    {
+      "productName": "Mac",
+      "category": "Huawei",
+      "condition": "New",
+      "price": "353456436",
+      "comment": "errrrr",
+      "date": "2023-03-05T19:00:00.000Z",
+      "id": 7
     }
   ]
 }

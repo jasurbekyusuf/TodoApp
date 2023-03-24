@@ -1,7 +1,8 @@
 import { ApiService } from './../services/api.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SafeValue } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dialog',
@@ -11,8 +12,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class DialogComponent implements OnInit {
   conditionProduct: string[] = ["New", "Second Hand", "B/Y"]
   productForm!:FormGroup
+  actionBtn: string = "Save"
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService, private dialogRef: MatDialogRef<DialogComponent>){}
+  constructor(
+    private formBuilder: FormBuilder,
+    private api: ApiService,
+    private dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public editData: any
+  ){}
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -23,24 +30,51 @@ export class DialogComponent implements OnInit {
       comment:['', Validators.required],
       date:['', Validators.required],
     })
+    if(this.editData){
+      this.actionBtn = "Update"
+      this.productForm.controls['productName'].setValue(this.editData.productName);
+      this.productForm.controls['category'].setValue(this.editData.category);
+      this.productForm.controls['condition'].setValue(this.editData.condition);
+      this.productForm.controls['price'].setValue(this.editData.price);
+      this.productForm.controls['comment'].setValue(this.editData.comment);
+      this.productForm.controls['date'].setValue(this.editData.date);
+    }
   }
 
   addProduct(){
-    if(this.productForm.valid){
-      this.api.postProduct(this.productForm.value)
-        .subscribe({
-          next:()=>{
-            alert("product was added successfully")
-            this.productForm.reset()
-            this.dialogRef.close("save")
-          },
-          error:() => {
-            alert("Something went wrong while adding")
-          }
-        })
+    if(!this.editData){
+      if(this.productForm.valid){
+        this.api.postProduct(this.productForm.value)
+          .subscribe({
+            next:()=>{
+              alert("product was added successfully")
+              this.productForm.reset()
+              this.dialogRef.close("save")
+            },
+            error:() => {
+              alert("Something went wrong while adding")
+            }
+          })
+      }
+      else {
+        alert("Please fill out all required fields");
+      }
+    }else {
+      this.updateProduct()
     }
-    else {
-      alert("Please fill out all required fields");
-    }
+  }
+
+  updateProduct(){
+    this.api.putProduct(this.productForm.value, this.editData.id)
+    .subscribe({
+      next:(res)=>{
+        alert("Product updated successfully")
+        this.productForm.reset()
+        this.dialogRef.close('update')
+      },
+      error:() => {
+        alert("Something went wrong while adding")
+      }
+    })
   }
 }

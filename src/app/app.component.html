@@ -18,38 +18,53 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" matSort>
 
-        <!-- ID Column -->
+        <!-- Product Name Column -->
         <ng-container matColumnDef="productName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
           <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
         </ng-container>
 
-        <!-- Progress Column -->
+        <!-- Category Column -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-          <td mat-cell *matCellDef="let row"> {{row.category}}% </td>
+          <td mat-cell *matCellDef="let row"> {{row.category}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- Date Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
           <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
         </ng-container>
 
-        <!-- Fruit Column -->
+        <!-- Price Column -->
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
           <td mat-cell *matCellDef="let row"> {{row.price | currency}} </td>
         </ng-container>
 
+        <!-- Condition Column -->
         <ng-container matColumnDef="condition">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Condition </th>
           <td mat-cell *matCellDef="let row"> {{row.condition}} </td>
         </ng-container>
 
+        <!-- Comment Column -->
         <ng-container matColumnDef="comment">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Comment </th>
           <td mat-cell *matCellDef="let row"> {{row.comment}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button color="primary" (click)="editProduct(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProduct(row.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
